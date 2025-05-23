@@ -94,7 +94,7 @@ vlook-query: ws=off
 >
 > ==有序性==
 > 
-> 有些集合中的元素之间是可以比较大小的, 如: 
+> 有些集合中的元素之间是可以比较大小, 如: 
 >
 > - 实数集 $\mathbb{R}$
 > - 音阶集 $\{ 哆, 来, 咪, 发, 嗦, 啦, 西\}$
@@ -812,25 +812,81 @@ vlook-query: ws=off
 > > **数列极限四则运算**
 > >
 > > > *`加减法`*: 如果 $\displaystyle \lim_{n\rightarrow \infty}a_n = A$, $\displaystyle \lim_{n\rightarrow \infty}b_n = B$, 则 $\displaystyle \lim_{n\rightarrow \infty}[a_n \pm b_n]= A \pm B$.
-> > > [根据定义证明, 待补充]
+> > >  **证明**:  
+>>> 对任意 \(\varepsilon > 0\)，存在 \(N_1\) 使当 \(n > N_1\) 时 \(|a_n - A| < \frac{\varepsilon}{2}\)，  
+>>> 存在 \(N_2\) 使当 \(n > N_2\) 时 \(|b_n - B| < \frac{\varepsilon}{2}\)。  
+>>> 取 \(N = \max\{N_1, N_2\}\)，则当 \(n > N\) 时：  
+>>> \[
+>>> |(a_n \pm b_n) - (A \pm B)| \leq |a_n - A| + |b_n - B| < \varepsilon.
+>>> \]
 > > 
 > > > *`乘法`*: 如果 $\displaystyle \lim_{n\rightarrow \infty}a_n = A$, $\displaystyle \lim_{n\rightarrow \infty}b_n = B$, 则 $\displaystyle \lim_{n\rightarrow \infty}a_nb_n = AB$.
-> > > [根据定义证明, 待补充]
+> > > **证明**:  
+>>> 关键分解：\(|a_nb_n - AB| = |a_nb_n - Ab_n + Ab_n - AB| \leq |b_n||a_n - A| + |A||b_n - B|\)  
+>>> 因\(\{b_n\}\)收敛，故存在\(M>0\)使\(|b_n|\leq M\)  
+>>> 对\(\varepsilon>0\)，取\(N_1\)使当\(n>N_1\)时\(|a_n-A|<\frac{\varepsilon}{2M}\)  
+>>> 取\(N_2\)使当\(n>N_2\)时\(|b_n-B|<\frac{\varepsilon}{2(|A|+1)}\)  
+>>> 取\(N=\max\{N_1,N_2\}\)，则当\(n>N\)时：  
+>>> \[
+>>> |a_nb_n - AB| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+>>> \]
 > > 
 > > > *`除法`*: 如果 $\displaystyle \lim_{n\rightarrow \infty}a_n= A$, $\displaystyle \lim_{n\rightarrow \infty}b_n = B$, 且 $B \ne 0$, 则 $\displaystyle \lim_{n\rightarrow \infty}\frac{a_n}{b_n}= \frac{A}{B}$.
-> > > [根据定义证明, 待补充]
+> > > **证明**:  
+>>> 先证\(\lim_{n \to \infty} \frac{1}{b_n} = \frac{1}{B}\)  
+>>> 存在\(N_1\)使当\(n>N_1\)时\(|b_n|>\frac{|B|}{2}\)  
+>>> 对\(\varepsilon>0\)，取\(N_2\)使当\(n>N_2\)时\(|b_n-B|<\frac{\varepsilon B^2}{2}\)  
+>>> 则当\(n>\max\{N_1,N_2\}\)时：  
+>>> \[
+>>> \left|\frac{1}{b_n} - \frac{1}{B}\right| = \frac{|b_n - B|}{|b_nB|} < \frac{2}{|B|^2} \cdot \frac{\varepsilon B^2}{2} = \varepsilon
+>>> \]  
+>>> 再结合乘法法则即得结论。
+
 > >
 > 
 > > **函数极限四则运算**
 > >
 > > > *`加减法`*: 如果 $\displaystyle \lim_{x\rightarrow x_0}f(x) = A$, $\displaystyle \lim_{x\rightarrow x_0}g(x) = B$, 则 $\displaystyle \lim_{x\rightarrow x_0}[f(x) \pm g(x)]= A \pm B$.
-> > > [根据定义证明, 待补充]
+> > >  **证明**：
+>>> 1. 对任意 \(\varepsilon > 0\)，由 \(\lim_{x \to x_0} f(x) = A\)，存在 \(\delta_1 > 0\)，  
+>>> 使得当 \(0 < |x - x_0| < \delta_1\) 时，\(|f(x) - A| < \frac{\varepsilon}{2}\)  
+>>> 2. 由 \(\lim_{x \to x_0} g(x) = B\)，存在 \(\delta_2 > 0\)，  
+>>> 使得当 \(0 < |x - x_0| < \delta_2\) 时，\(|g(x) - B| < \frac{\varepsilon}{2}\)  
+>>> 3. 取 \(\delta = \min\{\delta_1, \delta_2\}\)，则当 \(0 < |x - x_0| < \delta\) 时：  
+>>> \[
+>>> |[f(x) \pm g(x)] - [A \pm B]| \leq |f(x) - A| + |g(x) - B| < \varepsilon
+>>> \]
+
 > > 
 > > > *`乘法`*: 如果 $\displaystyle \lim_{x\rightarrow x_0}f(x) = A$, $\displaystyle \lim_{x\rightarrow x_0}g(x) = B$, 则 $\displaystyle \lim_{x\rightarrow x_0}f(x)g(x)= AB$.
-> > > [根据定义证明, 待补充]
+> > >  **证明**：
+>>> 1. 对任意 \(\varepsilon > 0\)，由 \(\lim_{x \to x_0} f(x) = A\)，存在 \(\delta_1 > 0\)，  
+>>> 使得当 \(0 < |x - x_0| < \delta_1\) 时，\(|f(x) - A| < \frac{\varepsilon}{2}\)  
+>>> 2. 由 \(\lim_{x \to x_0} g(x) = B\)，存在 \(\delta_2 > 0\)，  
+>>> 使得当 \(0 < |x - x_0| < \delta_2\) 时，\(|g(x) - B| < \frac{\varepsilon}{2}\)  
+>>> 3. 取 \(\delta = \min\{\delta_1, \delta_2\}\)，则当 \(0 < |x - x_0| < \delta\) 时：  
+>>> \[
+>>> |[f(x) \pm g(x)] - [A \pm B]| \leq |f(x) - A| + |g(x) - B| < \varepsilon
+>>> \]
+
 > > 
 > > > *`除法`*: 如果 $\displaystyle \lim_{x\rightarrow x_0}f(x) = A$, $\displaystyle \lim_{x\rightarrow x_0}g(x) = B$, 且 $B \ne 0$, 则 $\displaystyle \lim_{x\rightarrow x_0}\frac{f(x)}{g(x)}= \frac{A}{B}$.
-> > > [根据定义证明, 待补充]
+> > > 
+>>> **证明**：
+>>> 1. 先证 \(\lim_{x \to x_0} \frac{1}{g(x)} = \frac{1}{B}\)：  
+>>> - 由 \(\lim_{x \to x_0} g(x) = B \neq 0\)，存在 \(\delta_1 > 0\) 使当 \(0 < |x - x_0| < \delta_1\) 时，\(|g(x)| > \frac{|B|}{2}\)  
+>>> - 对任意 \(\varepsilon > 0\)，取 \(\delta_2 > 0\) 使当 \(0 < |x - x_0| < \delta_2\) 时：  
+>>> \[
+>>> |g(x) - B| < \frac{\varepsilon B^2}{2}
+>>> \]  
+>>> - 取 \(\delta = \min\{\delta_1, \delta_2\}\)，则当 \(0 < |x - x_0| < \delta\) 时：  
+>>> \[
+>>> \left| \frac{1}{g(x)} - \frac{1}{B} \right| = \frac{|g(x) - B|}{|g(x)B|} < \frac{2}{|B|^2} \cdot \frac{\varepsilon B^2}{2} = \varepsilon
+>>> \]
+>>> 2. 再结合乘法法则即得：  
+>>> \[
+>>> \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \left( f(x) \cdot \frac{1}{g(x)} \right) = A \cdot \frac{1}{B} = \frac{A}{B}
+>>> \]
 > > 
 
 > [!note]
@@ -843,14 +899,49 @@ vlook-query: ws=off
 > > 
 > > 证明 $\displaystyle \lim_{n\rightarrow \infty}\frac{1}{n}=0$
 > > 
-> > [用定义证明, 待补充]
+> > **证明**：  
+>>> 1. 对任意给定的 $\varepsilon > 0$，我们需要找到正整数 $N$，使得当 $n > N$ 时：  
+>>> \[
+>>> \left| \frac{1}{n} - 0 \right| = \frac{1}{n} < \varepsilon
+>>> \]  
+>>> 2. 解不等式 $\frac{1}{n} < \varepsilon$ 得 $n > \frac{1}{\varepsilon}$  
+>>> 3. 取 $N = \left\lfloor \frac{1}{\varepsilon} \right\rfloor + 1$（即不小于 $\frac{1}{\varepsilon}$ 的最小整数）  
+>>> 4. 则当 $n > N$ 时，必有 $\frac{1}{n} < \varepsilon$  
+>>> 5. 由极限定义，$\displaystyle \lim_{n\rightarrow \infty}\frac{1}{n}=0$ 得证  
+>>> **几何解释**：  
+>>> 当 $n$ 趋近无穷大时，$\frac{1}{n}$ 无限接近于 $0$，如图像 $y=\frac{1}{x}$ 在 $x\to\infty$ 时的渐近线为 $y=0$。
 > > 
 >
 > > **例2**
 > > 
 > > 计算 $\displaystyle \lim_{n\rightarrow \infty}\frac{1}{2n}$
-> > 
-> > [待补充]
+>>>**解法1（直接法）**：  
+>>> 由 $\displaystyle \lim_{n\rightarrow \infty}\frac{1}{n}=0$ 可得：  
+>>> \[
+>>> \lim_{n\rightarrow \infty}\frac{1}{2n} = \frac{1}{2} \cdot \lim_{n\rightarrow \infty}\frac{1}{n} = \frac{1}{2} \times 0 = 0
+>>> \]
+>>> **解法2（$\varepsilon-N$ 定义证明）**：  
+>>> 1. 对任意 $\varepsilon > 0$，需存在 $N$ 使得当 $n > N$ 时：  
+>>> \[
+>>> \left| \frac{1}{2n} - 0 \right| = \frac{1}{2n} < \varepsilon
+>>> \]  
+>>> 2. 解不等式得 $n > \frac{1}{2\varepsilon}$  
+>>> 3. 取 $N = \left\lfloor \frac{1}{2\varepsilon} \right\rfloor + 1$  
+>>> 4. 则当 $n > N$ 时必满足 $\frac{1}{2n} < \varepsilon$  
+>>> 5. 故极限为 $0$
+
+>>> **几何解释**：  
+>>> 数列 $\frac{1}{2n}$ 的收敛速度是 $\frac{1}{n}$ 的一半，但最终都趋于 $0$。
+
+>>> **推广结论**：  
+>>> 对任意常数 $c \neq 0$，有：  
+>>> \[
+>>> \lim_{n\rightarrow \infty}\frac{c}{n} = 0
+>>> \]
+
+>>> [注] 两种解法分别展示了：  
+>>> （1）利用已知极限的性质  
+>>> （2）严格的 $\varepsilon-N$ 语言验证
 >
 > ---
 > 
@@ -858,14 +949,84 @@ vlook-query: ws=off
 > > 
 > > 计算 $\displaystyle \lim_{n\rightarrow \infty}\frac{1}{n^2}$
 > > 
-> > [待补充]
-> > 
+>>>**解法1（夹逼定理法）**：  
+>>> 1. 注意到当 $n \geq 1$ 时：  
+>>> \[
+>>> 0 < \frac{1}{n^2} \leq \frac{1}{n}
+>>> \]  
+>>> 2. 已知 $\displaystyle \lim_{n\rightarrow \infty}\frac{1}{n} = 0$  
+>>> 3. 由夹逼定理可得：  
+>>> \[
+>>> \lim_{n\rightarrow \infty}\frac{1}{n^2} = 0
+>>> \]
+
+>>> **解法2（$\varepsilon-N$ 定义证明）**：  
+>>> 1. 对任意 $\varepsilon > 0$，需存在 $N$ 使得当 $n > N$ 时：  
+>>> \[
+>>> \left| \frac{1}{n^2} - 0 \right| = \frac{1}{n^2} < \varepsilon
+>>> \]  
+>>> 2. 解不等式得 $n > \frac{1}{\sqrt{\varepsilon}}$  
+>>> 3. 取 $N = \left\lfloor \frac{1}{\sqrt{\varepsilon}} \right\rfloor + 1$  
+>>> 4. 则当 $n > N$ 时必满足 $\frac{1}{n^2} < \varepsilon$  
+>>> 5. 故极限为 $0$
+>>> **几何解释**：  
+>>> 数列 $\frac{1}{n^2}$ 比 $\frac{1}{n}$ 收敛到 $0$ 的速度更快。
+>>> **推广结论**：  
+>>> 对任意 $k > 0$，有：  
+>>> \[
+>>> \lim_{n\rightarrow \infty}\frac{1}{n^k} = 0
+>>> \]
+>>> **比较分析**：  
+>>> | 数列 | 收敛速度 | 所需 $N$（对固定 $\varepsilon$） |  
+>>> |------|----------|-----------------------------|  
+>>> | $\frac{1}{n}$ | 线性收敛 | $\sim \frac{1}{\varepsilon}$ |  
+>>> | $\frac{1}{n^2}$ | 二次收敛 | $\sim \frac{1}{\sqrt{\varepsilon}}$ |  
+>>> | $\frac{1}{2^n}$ | 指数收敛 | $\sim \log_2 \frac{1}{\varepsilon}$ |
+
+>>> [注] 本例展示了：  
+>>> （1）不同证明方法的灵活运用  
+>>> （2）收敛速度的量化比较  
+>>> （3）更一般的极限结论
 >
 > > **例4**
 > > 
 > > 计算 $\displaystyle \lim_{x\rightarrow 1}(2x-1)$
 > > 
-> > [待补充]
+> >  **解法1（直接代入法）**：  
+>>> 由于 $f(x) = 2x - 1$ 在 $x=1$ 处连续，可直接代入：  
+>>> \[
+>>> \lim_{x\rightarrow 1}(2x-1) = 2(1) - 1 = 1
+>>> \]
+
+>>> **解法2（$\varepsilon-\delta$ 定义证明）**：  
+>>> 1. 对任意 $\varepsilon > 0$，需找到 $\delta > 0$ 使得当 $0 < |x-1| < \delta$ 时：  
+>>> \[
+>>> |(2x-1) - 1| = 2|x-1| < \varepsilon
+>>> \]  
+>>> 2. 取 $\delta = \frac{\varepsilon}{2}$，则当 $0 < |x-1| < \delta$ 时：  
+>>> \[
+>>> 2|x-1| < 2 \cdot \frac{\varepsilon}{2} = \varepsilon
+>>> \]  
+>>> 3. 故极限为 $1$
+
+>>> **几何解释**：  
+>>> 函数 $y=2x-1$ 是斜率为 $2$ 的直线，在 $x=1$ 处函数值自然趋近于 $1$。
+
+>>> **推广结论**：  
+>>> 对任意多项式 $P(x)$ 和点 $a \in \mathbb{R}$，有：  
+>>> \[
+>>> \lim_{x\rightarrow a}P(x) = P(a)
+>>> \]
+
+>>> **注意事项**：  
+>>> 1. 直接代入法仅适用于连续函数  
+>>> 2. $\varepsilon-\delta$ 证明适用于所有情况  
+>>> 3. 本例中 $\delta$ 与 $\varepsilon$ 的关系为线性比例（$\delta = \varepsilon/2$）
+
+>>> [注] 本例展示了：  
+>>> （1）连续函数的极限特性  
+>>> （2）如何构造 $\delta$ 与 $\varepsilon$ 的关系  
+>>> （3）线性函数极限的典型处理方法
 > 
 > ---
 > 
@@ -873,14 +1034,95 @@ vlook-query: ws=off
 > > 
 > > 计算 $\displaystyle \lim_{x\rightarrow 2}\frac{x^3-1}{x^2-5x+3}$
 > > 
-> > [待补充]
+>>> **解法1（直接代入法）**：  
+>>> 1. 分子在 $x=2$ 处的值：$2^3 - 1 = 7$  
+>>> 2. 分母在 $x=2$ 处的值：$2^2 - 5(2) + 3 = -3$  
+>>> 3. 因为分母不为零，可直接代入：  
+>>> \[
+>>> \lim_{x\rightarrow 2}\frac{x^3-1}{x^2-5x+3} = \frac{7}{-3} = -\frac{7}{3}
+>>> \]
+
+>>> **解法2（因式分解验证）**：  
+>>> 1. 检查分子分母在 $x=2$ 时是否有公因式：  
+>>>    - 分子：$x^3-1 = (x-1)(x^2+x+1)$  
+>>>    - 分母：$x^2-5x+3$ 在 $x=2$ 处不为零  
+>>> 2. 确认无零因子相消，直接代入有效
+
+>>> **$\varepsilon-\delta$ 证明思路**：  
+>>> 对于任意 $\varepsilon > 0$，存在 $\delta > 0$ 使得当 $0 < |x-2| < \delta$ 时：  
+>>> \[
+>>> \left| \frac{x^3-1}{x^2-5x+3} - \left(-\frac{7}{3}\right) \right| < \varepsilon
+>>> \]  
+>>> 可通过控制 $x$ 在 $2$ 附近的范围（如 $\delta < 0.5$）保证分母不为零，再构造不等式。
+
+>>> **几何意义**：  
+>>> 函数在 $x=2$ 处有定义且连续，极限值即为函数值。
+
+>>> **注意事项**：  
+>>> 1. 必须先验证分母极限不为零  
+>>> 2. 当出现 $0/0$ 不定式时需采用其他方法（如因式分解、洛必达法则）  
+>>> 3. 对于有理函数，在定义域内的点可直接代入
+
+>>> **推广结论**：  
+>>> 对于有理函数 $R(x) = \frac{P(x)}{Q(x)}$，若 $Q(a) \neq 0$，则：  
+>>> \[
+>>> \lim_{x\to a}R(x) = \frac{P(a)}{Q(a)}
+>>> \]
+
+>>> [注] 本例展示了有理函数极限的典型解法，强调必须先验证分母不为零的条件。
 > > 
 >
 > > **例6**
 > > 
 > > 计算 $\displaystyle \lim_{x\rightarrow 3}\frac{x-3}{x^2-9}$
 > > 
-> > [待补充]
+>>> **解法1（因式分解法）**：
+>>> 1. 识别不定式：直接代入得 $\frac{0}{0}$，需进一步处理
+>>> 2. 因式分解分母：
+>>> \[
+>>> x^2-9 = (x-3)(x+3)
+>>> \]
+>>> 3. 约去公因式：
+>>> \[
+>>> \frac{x-3}{x^2-9} = \frac{1}{x+3} \quad (x \neq 3)
+>>> \]
+>>> 4. 计算简化后的极限：
+>>> \[
+>>> \lim_{x\rightarrow 3}\frac{1}{x+3} = \frac{1}{6}
+>>> \]
+
+>>> **解法2（洛必达法则）**：
+>>> 1. 验证 $\frac{0}{0}$ 型不定式
+>>> 2. 分子分母分别求导：
+>>> \[
+>>> \frac{d}{dx}(x-3) = 1, \quad \frac{d}{dx}(x^2-9) = 2x
+>>> \]
+>>> 3. 应用洛必达法则：
+>>> \[
+>>> \lim_{x\rightarrow 3}\frac{1}{2x} = \frac{1}{6}
+>>> \]
+
+>>> **几何解释**：
+>>> 函数在 $x=3$ 处有可去间断点，极限值 $\frac{1}{6}$ 为填补该"洞"的值。
+
+>>> **注意事项**：
+>>> 1. 因式分解法更直观，适用于多项式
+>>> 2. 洛必达法则适用于更一般的 $\frac{0}{0}$ 或 $\frac{\infty}{\infty}$ 型
+>>> 3. 最终结果应与函数在 $x=3$ 附近的趋势一致
+
+>>> **推广结论**：
+>>> 对于 $\frac{0}{0}$ 型有理函数极限：
+>>> \[
+>>> \lim_{x\to a}\frac{P(x)}{Q(x)} = \lim_{x\to a}\frac{P'(x)}{Q'(x)} \quad (\text{当右式存在})
+>>> \]
+>>> 或通过因式分解消去零因子求解。
+
+>>> **验证**：
+>>> 取 $x=2.999$ 得 $\approx 0.16661$  
+>>> 取 $x=3.001$ 得 $\approx 0.16655$  
+>>> 均接近 $\frac{1}{6} \approx 0.166667$
+
+>>> [注] 本例展示了处理 $\frac{0}{0}$ 型极限的两种基本方法，强调在直接代入失效时的解决策略。
 
 
 ## 两个重要的极限
@@ -897,7 +1139,35 @@ vlook-query: ws=off
 > 
 > ==三明治定理==
 >
-> [待补充] 
+> >>> **定理陈述**：  
+>>> 设函数 $f(x), g(x), h(x)$ 在点 $x_0$ 的某去心邻域内满足：  
+>>> 1. $g(x) \leq f(x) \leq h(x)$  
+>>> 2. $\displaystyle \lim_{x\to x_0} g(x) = \lim_{x\to x_0} h(x) = L$  
+>>> 则 $\displaystyle \lim_{x\to x_0} f(x) = L$。  
+>>> 
+>>> **数列版本**：  
+>>> 若数列 $\{a_n\}, \{b_n\}, \{c_n\}$ 满足：  
+>>> 1. $b_n \leq a_n \leq c_n$（对充分大的 $n$）  
+>>> 2. $\displaystyle \lim_{n\to\infty} b_n = \lim_{n\to\infty} c_n = L$  
+>>> 则 $\displaystyle \lim_{n\to\infty} a_n = L$。  
+>>> 
+>>> **典型应用步骤**：  
+>>> 1. 找到比目标函数小和大的两个函数  
+>>> 2. 证明这两个函数的极限相同  
+>>> 3. 根据夹逼性得出结论  
+>>> 
+>>> **示例**：  
+>>> 证明 $\displaystyle \lim_{x\to 0} x^2 \sin\left(\frac{1}{x}\right) = 0$  
+>>> - 因 $-1 \leq \sin\left(\frac{1}{x}\right) \leq 1$，故 $-x^2 \leq x^2 \sin\left(\frac{1}{x}\right) \leq x^2$  
+>>> - 由 $\displaystyle \lim_{x\to 0} -x^2 = \lim_{x\to 0} x^2 = 0$ 得证  
+>>> 
+>>> **注意事项**：  
+>>> 1. 夹逼的两个函数必须收敛到同一极限  
+>>> 2. 不等式关系只需在极限点附近成立  
+>>> 3. 特别适用于含振荡因子（如 $\sin$, $\cos$）的极限  
+>>> 
+>>> **为什么叫"三明治"**：  
+>>> 目标函数 $f(x)$ 被 $g(x)$ 和 $h(x)$ 像面包片一样夹在中间，故得名。
 
 > [!caution]
 >
@@ -905,7 +1175,53 @@ vlook-query: ws=off
 > 
 > ![一个重要的函数极限](media/img/sinx_over_x_full.png#400h)
 > 
-> [证明待补充]
+> ##### 几何法证明
+
+>>1. **单位圆构造**：
+>>   - 考虑单位圆（半径 \( r = 1 \)）中角度 \( x \in (0, \frac{\pi}{2}) \)   - 定义：
+>>     - \( \sin x \) 为对边长度
+>>     - \( x \) 为圆弧长度（弧度制）
+>>     - \( \tan x \) 为切线长度
+>>2. **面积比较**：
+   \[
+   \text{面积} \triangle OAP < \text{扇形面积} OAP < \text{面积} \triangle OAT
+   \]
+   即：
+   \[
+   \frac{1}{2} \sin x < \frac{1}{2} x < \frac{1}{2} \tan x
+   \]
+>>3. **化简不等式**：
+   \[
+   \sin x < x < \tan x \implies 1 < \frac{x}{\sin x} < \frac{1}{\cos x}
+   \]
+   取倒数得：
+   \[
+   \cos x < \frac{\sin x}{x} < 1
+   \]
+>>4. **应用夹逼定理**：
+   \[
+   \lim_{x \to 0} \cos x = 1 \quad \text{且} \quad \lim_{x \to 0} 1 = 1
+   \]
+   故：
+   \[
+   \lim_{x \to 0} \frac{\sin x}{x} = 1
+   \]
+>>##### 泰勒展开证明（补充）
+>>利用 \( \sin x \) 的泰勒展开：
+\[
+\sin x = x - \frac{x^3}{6} + o(x^3)
+\]
+因此：
+\[
+\frac{\sin x}{x} = 1 - \frac{x^2}{6} + o(x^2) \to 1 \quad (x \to 0)
+\]
+>>##### 注意事项
+>>1. 角度 \( x \) 必须使用弧度制
+>>2. 对于 \( x < 0 \) 的情况，利用奇函数性质：
+   \[
+   \frac{\sin(-x)}{-x} = \frac{\sin x}{x}
+   \]
+>>3. 该极限是推导三角函数导数的基础
 
 ### 重要极限二
 > [!tip]
@@ -916,29 +1232,114 @@ vlook-query: ws=off
 > > 
 > > ![Jakob Bernoulli](media/img/Jakob_Bernoulli.jpg#400h)
 > > 
-> > [故事待补充, 下面的图片来自网络]
-> > ![复利的故事](media/img/temp_story_jbernoulli.png#800h)
->
+> > >>> # 雅各布·伯努利与数e的发现
+
+>>> #### 发现背景  
+>>> **雅各布·伯努利**（Jacob Bernoulli，1654-1705）在研究**复利计算**时首次发现数学常数**e**：  
+>>> #### 核心发现  
+>>> 通过研究极限：  
+>>> $$
+>>> \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n
+>>> $$  
+>>> 伯努利观察到：  
+>>> - 年复利 → 2.00美元  
+>>> - 半年复利 → 2.25美元  
+>>> - 日复利 → ≈2.7146美元  
+>>> 最终确定极限值 ≈ 2.7182818
+
+>>> #### 现代定义  
+>>> 该极限被定义为自然对数的底数：  
+>>> $$
+>>> e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n
+>>> $$
+
+>>> #### 历史意义  
+>>> 1. 首个通过极限过程定义的常数  
+>>> 2. 连接了离散复利与连续增长  
+>>> 3. 为微积分发展奠定基础  
+
 > ![数列的值](media/img/limit_to_e.png#400h)
 
 > [!important]
 > 
-> ==单调有界数列有极限==
+> ==
+> [!caution]单调有界数列有极限==
 >
-> [待补充]  
+>>> **第一步：构造极限候选**
+>>> 由有界性，集合 $S = \{a_n | n \in \mathbb{N}\}$ 有上界 $M$。
+>>> 根据实数完备性公理，$S$ 存在上确界 $L = \sup S$。
 
-> [!caution]
+>>> **第二步：验证收敛性**
+>>> 对任意 $\varepsilon > 0$：
+>>> 1. 由上确界定义，存在 $a_N \in S$ 使得：
+>>> $$ L - \varepsilon < a_N \leq L $$
+>>> 2. 由单调性，当 $n \geq N$ 时有：
+>>> $$ a_N \leq a_n \leq L $$
+>>> 3. 因此：
+>>> $$ |a_n - L| = L - a_n \leq L - a_N < \varepsilon $$
+
+>>> **第三步：结论**
+>>> 由 $\varepsilon$-定义，证得：
+>>> $$ \lim\limits_{n\to\infty} a_n = L $$
+
+
 >
 > **证明** $\displaystyle \lim_{n\rightarrow \infty} \left(1+\frac{1}{n}\right)^{n} = \mathrm{e}$
 >
 >
-> [证明待补充]
+>>> 1. **单调性证明**：
+>>>    - 使用二项式定理展开：
+>>>    \[
+>>>    \left(1+\frac{1}{n}\right)^n = \sum_{k=0}^n \binom{n}{k}\frac{1}{n^k}
+>>>    \]
+>>>    - 通过比较相邻项证明数列单调递增
+
+>>> 2. **有界性证明**：
+>>>    - 证明展开式小于3：
+>>>    \[
+>>>    \left(1+\frac{1}{n}\right)^n < 1 + 1 + \frac{1}{2!} + \cdots + \frac{1}{n!} < 3
+>>>    \]
+
+>>> 3. **极限存在性**：
+>>>    - 由单调有界定理，极限存在
+>>>    - 定义该极限为e
 
 > [!caution]
 >
 > **证明** $\displaystyle \lim_{x\rightarrow 0} \left(1+x\right)^{\frac{1}{x}} = \mathrm{e}$
 >
-> [证明待补充]
+> **证明步骤**：
+
+>>> 1. **变量替换法**：
+>>>    - 令 \( t = \frac{1}{x} \)，则当 \( x \to 0 \) 时 \( t \to \infty \)
+>>>    - 原极限转化为：
+>>>    \[
+>>>    \lim_{t \to \infty} \left(1 + \frac{1}{t}\right)^t = e
+>>>    \]
+>>>    - 这正是数\( e \)的标准定义
+
+>>> 2. **对数法证明**：
+>>>    - 考虑取对数：
+>>>    \[
+>>>    \ln L = \lim_{x \to 0} \frac{\ln(1+x)}{x}
+>>>    \]
+>>>    - 使用洛必达法则：
+>>>    \[
+>>>    \lim_{x \to 0} \frac{\ln(1+x)}{x} = \lim_{x \to 0} \frac{1/(1+x)}{1} = 1
+>>>    \]
+>>>    - 因此 \( L = e^1 = e \)
+
+>>> 3. **数列夹逼法**（严格证明）：
+>>>    - 对任意小的\( x \)，取整数\( n \)使得：
+>>>    \[
+>>>    \frac{1}{n+1} \leq x \leq \frac{1}{n}
+>>>    \]
+>>>    - 建立不等式：
+>>>    \[
+>>>    \left(1+\frac{1}{n+1}\right)^n \leq (1+x)^{1/x} \leq \left(1+\frac{1}{n}\right)^{n+1}
+>>>    \]
+>>>    - 当\( x \to 0 \)时\( n \to \infty \)，两边极限均为\( e \)
+
 > 
 
 > [!warning]
